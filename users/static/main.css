@@ -1,0 +1,35 @@
+body {
+    background-image: url('background.jpg'); /* Replace 'background.jpg' with your background image path */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #fff;
+}
+
+.site-header {
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background for header */
+    padding: 10px 0; /* Add padding to top and bottom */
+}
+
+.container {
+    margin-top: 50px; /* Add space between header and content */
+}
+
+.content-section {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background for content section */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add shadow effect */
+}
+
+.alert {
+    margin-bottom: 20px; /* Add space between alerts */
+}
+
+.list-group-item {
+    border-color: rgba(0, 0, 0, 0.125); /* Light border for list group items */
+}
+
+.navbar-brand {
+    font-weight: bold; /* Make navbar brand text bold */
+}
