@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Management</title>
+    <link rel="stylesheet" href="{% static './css/style.css' %}">
+</head>
+<body>
+    <section class="Header-container">
+        <div class="header-container">
+            <div class="header-section" style="margin-left: 20px;">
+                <h3>Asset Management</h3>
+            </div>
+            <div class="header-section" style="margin-top:-15px">
+                <a href="SignIn"><button>Log in</button></a>
+            </div>
+        </div>
+    </section>
+    <section class="index">
+        <div class="index-container">
+            <div class="index-sub">
+                <img src="{% static './img/bg4.svg' %}" alt="">
+            </div>
+            <div class="index-sub">
+                <h1>Asset Management System</h1><br/>
+                <p></p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
