@@ -1,5 +1,5 @@
 body {
-    background-image: url('users\static\bg.jpg'); /* Replace 'background.jpg' with your background image path */
+    background-color: aqua; /* Replace 'background.jpg' with your background image path */
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
