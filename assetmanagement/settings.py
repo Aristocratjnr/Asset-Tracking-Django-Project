@@ -53,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'rentalmanagement.urls'
+ROOT_URLCONF = 'assetmanagement.urls'
 
 TEMPLATES = [
     {
@@ -71,7 +71,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'rentalmanagement.wsgi.application'
+WSGI_APPLICATION = 'assetmanagement.wsgi.application'
 
 
 # Database
