@@ -1,23 +1,27 @@
 {% extends "Dashboard.html" %}
+{% load static %}
+
 {% block content %}
-  <article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}" alt="Author's profile picture">
+<article class="media content-section mt-5">
+    <img class="rounded-circle article-img mr-3" src="{{ object.author.profile.image.url }}" alt="Author's profile picture" width="64" height="64">
     <div class="media-body">
-      <div class="article-metadata">
-        <a class="mr-2" href="#">{{ object.author }}</a>
-        <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
-        {% if object.author == user %}
-          <div>
-            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'assets-update' object.id %}">Update</a>
-            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'assets-delete' object.id %}">Delete</a>
-          </div>
+        <div class="article-metadata d-flex justify-content-between align-items-center">
+            <div>
+                <a class="mr-2 text-dark font-weight-bold" href="#">{{ object.author }}</a>
+                <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
+            </div>
+            {% if object.author == user %}
+            <div class="btn-group">
+                <a class="btn btn-secondary btn-sm" href="{% url 'assets-update' object.id %}">Update</a>
+                <a class="btn btn-danger btn-sm" href="{% url 'assets-delete' object.id %}">Delete</a>
+            </div>
+            {% endif %}
+        </div>
+        <h2 class="article-title mt-3">{{ object.title }}</h2>
+        <p class="article-content">{{ object.content }}</p>
+        {% if object.post_image %}
+        <img class="img-fluid mt-3" src="{{ object.post_image.url }}" alt="Post image">
         {% endif %}
-      </div>
-      <h2 class="article-title">{{ object.title }}</h2>
-      <p class="article-content">{{ object.content }}</p>
-      {% if object.post_image %}
-        <img class="fluid-image" src="{{ object.post_image.url }}" alt="Post image">
-      {% endif %}
     </div>
-  </article>
+</article>
 {% endblock content %}
