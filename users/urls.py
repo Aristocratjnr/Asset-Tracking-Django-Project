@@ -19,7 +19,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index),
-    path('Payment', views.ConfirmPayment),
     path('PaidHouses', views.PaidHouses),
     path('UnpaidHouses', views.UnpaidHouses),
     path('logout/', auth_view.LogoutView.as_view(template_name='logout.html')),
