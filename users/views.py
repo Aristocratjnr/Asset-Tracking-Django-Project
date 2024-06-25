@@ -63,12 +63,6 @@ def sale(request):
     chart = get_plot(x,y)
     return render(request, 'sale.html',{'chart': chart})
 
-@login_required
-def UnpaidHouses(request):
-    if request.user.is_superuser:
-        return render(request, '')
-    else:
-        return render(404)
 
 
 @login_required
