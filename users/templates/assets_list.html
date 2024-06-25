@@ -1,7 +1,7 @@
-{% extends "users\templates\Dashboard.html" %}
+{% extends "Dashboard.html" %}
 {% block content %}
   <article class="media content-section">
-    <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+    <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}" alt="Author's profile picture">
     <div class="media-body">
       <div class="article-metadata">
         <a class="mr-2" href="#">{{ object.author }}</a>
@@ -15,7 +15,9 @@
       </div>
       <h2 class="article-title">{{ object.title }}</h2>
       <p class="article-content">{{ object.content }}</p>
-      <img class="fluid-image" src="{{ assets.post_image.url }}">
+      {% if object.post_image %}
+        <img class="fluid-image" src="{{ object.post_image.url }}" alt="Post image">
+      {% endif %}
     </div>
   </article>
-{% endblock content %
+{% endblock content %}
