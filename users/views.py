@@ -54,9 +54,7 @@ def Dashboard(request):
     )
 
 
-def Revenue(request):   
-    if request.user.is_superuser:
-        return render(request, 'MonthlyRevenue.html')
+
     
 def sale(request):
     qs = Sale.objects.all()
