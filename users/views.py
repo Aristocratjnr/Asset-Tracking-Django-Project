@@ -84,7 +84,7 @@ def UnpaidHouses(request):
 
 @login_required
 def ConfirmPayment(request):
-    return render(request, 'Payment.html')
+    return render(request, '')
 
 def logout(request):
     return render(request, 'logout.html')
