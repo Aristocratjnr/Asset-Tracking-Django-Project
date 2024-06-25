@@ -64,11 +64,6 @@ def sale(request):
     return render(request, 'sale.html',{'chart': chart})
 
 
-
-@login_required
-def ConfirmPayment(request):
-    return render(request, '')
-
 def logout(request):
     return render(request, 'logout.html')
 
