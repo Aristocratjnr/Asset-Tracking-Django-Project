@@ -77,7 +77,7 @@ def sale(request):
 @login_required
 def UnpaidHouses(request):
     if request.user.is_superuser:
-        return render(request, 'UnpaidHouses.html')
+        return render(request, '')
     else:
         return render(404)
 
