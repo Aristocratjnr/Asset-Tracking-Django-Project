@@ -19,7 +19,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index),
-    path('UnpaidHouses', views.UnpaidHouses),
     path('logout/', auth_view.LogoutView.as_view(template_name='logout.html')),
     path('SignIn',auth_view.LoginView.as_view(template_name='SignIn.html')),
     path('Dashboard/index', views.Dashboard),
