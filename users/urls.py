@@ -19,7 +19,6 @@ from . import views
 
 urlpatterns = [
     path('', views.index),
-    path('Revenue', views.Revenue),
     path('Payment', views.ConfirmPayment),
     path('PaidHouses', views.PaidHouses),
     path('UnpaidHouses', views.UnpaidHouses),
