@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from .forms import AssetForm, OrderForm # type: ignore
-from .models import Asset, Order
+from .models import Asset, Order # type: ignore
 
 def dashboard(request):
     assets = Asset.objects.all()
