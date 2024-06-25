@@ -35,9 +35,9 @@ class DashboardAPI(APIView):
         payment_objects = Payment.objects.filter(username=current_user)
         status_objects = Payment.objects.filter(username=current_user, month=curr_month, year=currentYear )
         house_objects = MyAppUser.objects.filter(user=current_user)
-        user_serialiizer = MyAppUserSerializer(current_user)
-        payment_serializer = PaymentSerializer(payment_objects)
-        current_payment_serializer = PaymentSerializer(status_objects)
+        user_serialiizer = MyAppUserSerializer(current_user) # type: ignore
+        payment_serializer = payment_serializer(payment_objects)
+        current_payment_serializer = payment_serializer(status_objects)
         return  Response(user_serialiizer.data, payment_serializer.data, current_payment_serializer.data)
 
 @login_required
