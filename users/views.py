@@ -52,16 +52,7 @@ def Dashboard(request):
     return render(request, 'Dashboard.html',
         {'payment_objects':payment_objects,'house_objects':house_objects, 'status_objects':status_objects}
     )
-@login_required
-def PaidHouses(request):
-    currentMonth = datetime.now().month
-    currentYear = datetime.now().year
-    curr_month = calendar.month_name[currentMonth]
-    paid_objects = Payment.objects.filter(month=curr_month, year=currentYear)
-    if request.user.is_superuser:
-        return render(request, '', {'paid_objects':paid_objects})
-    else:
-        return render(404)
+
 
 def Revenue(request):   
     if request.user.is_superuser:
