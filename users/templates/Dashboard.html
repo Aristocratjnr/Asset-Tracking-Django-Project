@@ -2,88 +2,195 @@
 {% load crispy_forms_tags %}
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset Tracker Dashboard</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="{% static 'asset_app/main.css' %}">
     <link rel="icon" href="{% static './img/favicon.ico' %}" type="image/x-icon">
-
-    {% if title %}
-        <title>Asset Management System - {{ title }}</title>
-    {% else %}
-        <title>Asset Management System</title>
-    {% endif %}
+    <style>
+        body {
+            background-color: #3a3a3a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .site-header {
+            background-color: #2a2a2a;
+            padding: 10px 0;
+        }
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+        }
+        .container {
+            padding-top: 60px;
+        }
+        .dashboard-header, .dashboard-content, .dashboard-sidebar {
+            margin-bottom: 20px;
+            background-color: #424242;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .dashboard-header h3 {
+            margin: 0;
+        }
+        .stats-card {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .stats-card h4, .stats-card p {
+            margin: 0;
+        }
+        .recents-table, .calendar-container {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .table thead th {
+            border-bottom: 2px solid #555555;
+        }
+        .table tbody td {
+            border-top: 1px solid #555555;
+        }
+        .btn-view {
+            background-color: #555555;
+            border: none;
+            color: #ffffff;
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
+        .calendar-container {
+            text-align: center;
+        }
+        .calendar-container h4 {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
     <header class="site-header">
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
             <div class="container">
-                <a class="navbar-brand mr-4" href="#">Asset Management System</a>
+                <a class="navbar-brand" href="#">ASSET TRACKER</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <div class="navbar-nav mr-auto">
                         <a class="nav-item nav-link" href="#">Home</a>
-                        <a class="nav-item nav-link" href="#">About</a>
                     </div>
-                    <!-- Navbar Right Side -->
                     <div class="navbar-nav">
-                        {% if user.is_authenticated %}
-                            <a class="nav-item nav-link" href="#">Add Asset</a>
-                            <a class="nav-item nav-link" href="#">Assign Asset</a>
-                            <a class="nav-item nav-link" href="#">Claim Asset</a>
-                            <a class="nav-item nav-link" href="#">Profile</a>
-                            <div class="dropdown">
-                                <button class="btn btn-outline-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: aliceblue;">
-                                    Search Assets
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" href="#">Assets</a>
-                                </div>
-                            </div>
-                            <a class="nav-item nav-link" href="{% url 'logout' %}" method="post" style="display:inline;">Logout</a>
-                            {% csrf_token %}
-                        {% else %}
-                            <a class="nav-item nav-link" href="">Login</a>
-                            <a class="nav-item nav-link" href="">Register</a>
-                        {% endif %}
+                        <a class="nav-item nav-link" href="#">Add Asset</a>
+                        <a class="nav-item nav-link" href="#">Profile</a>
+                        <a class="nav-item nav-link" href="#">Logout</a>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
-    <main role="main" class="container" style="padding-top: 60px;">
-      
+    <main role="main" class="container">
+        <div class="dashboard-header">
+            <h3>WELCOME, ADMIN</h3>
+        </div>
         <div class="row">
-            <div class="col-md-8">
-                {% if messages %}
-                    {% for message in messages %}
-                        <div class="alert alert-{{ message.tags }}">
-                            {{ message }}
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="stats-card">
+                            <h4>15</h4>
+                            <p>Total assets</p>
                         </div>
-                    {% endfor %}
-                {% endif %}
-                {% block content %}{% endblock %}
-            </div>
-            {% if user.is_authenticated %}
-                <div class="col-md-4">
-                    <div class="content-section">
-                        <h3>Asset Management System</h3>
-                        <p class="text-muted">About your Assets</p>
-                        <ul class="list-group">
-                            <li class="list-group-item list-group-item-light"><a href="#">Assets Updates</a></li>
-                            <li class="list-group-item list-group-item-light">Announcements</li>
-                            <li class="list-group-item list-group-item-light">Calendar of Events</li>
-                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stats-card">
+                            <h4>10</h4>
+                            <p>Assigned assets</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stats-card">
+                            <h4>3</h4>
+                            <p>Asset category</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="stats-card">
+                            <h4>GHC 72,144</h4>
+                            <p>Total Asset Value</p>
+                        </div>
                     </div>
                 </div>
-            {% endif %}
+                <div class="recents-table">
+                    <h4>Recents</h4>
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Asset Category</th>
+                                <th>Asset Code</th>
+                                <th>Assigned To</th>
+                                <th>Cost</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>11</td>
+                                <td>Vehicle</td>
+                                <td><img src="{% static 'path/to/qr_code.png' %}" alt="QR Code"></td>
+                                <td>Mr. Bawa</td>
+                                <td>50000</td>
+                                <td><button class="btn-view">View</button></td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>IT Device</td>
+                                <td><img src="{% static 'path/to/qr_code.png' %}" alt="QR Code"></td>
+                                <td>Mr. Twum</td>
+                                <td>4000</td>
+                                <td><button class="btn-view">View</button></td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>IT Device</td>
+                                <td><img src="{% static 'path/to/qr_code.png' %}" alt="QR Code"></td>
+                                <td>Mr. James</td>
+                                <td>4500</td>
+                                <td><button class="btn-view">View</button></td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>Machine</td>
+                                <td><img src="{% static 'path/to/qr_code.png' %}" alt="QR Code"></td>
+                                <td>Mrs. Duke</td>
+                                <td>8000</td>
+                                <td><button class="btn-view">View</button></td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>Vehicle</td>
+                                <td><img src="{% static 'path/to/qr_code.png' %}" alt="QR Code"></td>
+                                <td>Mr. Twum</td>
+                                <td>25000</td>
+                                <td><button class="btn-view">View</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="calendar-container">
+                    <h4>June 2024</h4>
+                    <div id="calendar"></div>
+                </div>
+            </div>
         </div>
     </main>
 
