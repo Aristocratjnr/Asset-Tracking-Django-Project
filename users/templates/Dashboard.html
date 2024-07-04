@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'asset_app/main.css' %}">
     <link rel="icon" href="{% static './img/favicon.ico' %}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <style>
         body {
             background-color: #3a3a3a;
@@ -70,6 +71,27 @@
         .calendar-container {
             text-align: center;
         }
+        #calendar {
+            background-color: #ffffff;
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .fc-header-toolbar {
+            background-color: #424242;
+            color: #ffffff;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+        }
+        .fc-view-container {
+            border-radius: 0 0 10px 10px;
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .fc-event {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+        }
     </style>
 </head>
 <body>
@@ -87,10 +109,10 @@
                     <div class="navbar-nav">
                         <a class="nav-item nav-link" href="#">Add Asset</a>
                         <a class="nav-item nav-link" href="#" id="profile-link">
-                            <img src="{% static 'path/to/profile_icon.png' %}" alt="Profile" style="width: 24px;">
+                            <i class="fas fa-user"></i>
                         </a>
                         <a class="nav-item nav-link" href="#" id="logout-link">
-                            <img src="{% static 'path/to/logout_icon.png' %}" alt="Logout" style="width: 24px;">
+                            <i class="fas fa-sign-out-alt"></i>
                         </a>
                     </div>
                 </div>
@@ -189,7 +211,7 @@
             </div>
             <div class="col-md-3">
                 <div class="calendar-container">
-                    <h4>June 2024</h4>
+                    <h4>Calendar</h4>
                     <div id="calendar"></div>
                 </div>
             </div>
@@ -203,6 +225,11 @@
     <script>
         $(document).ready(function() {
             $('#calendar').fullCalendar({
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
                 defaultView: 'month',
                 events: [
                     {
