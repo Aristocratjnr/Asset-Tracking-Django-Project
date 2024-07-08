@@ -2,26 +2,40 @@
 {% load static %}
 
 {% block content %}
-<article class="media content-section mt-5">
-    <img class="rounded-circle article-img mr-3" src="{{ object.author.profile.image.url }}" alt="Author's profile picture" width="64" height="64">
-    <div class="media-body">
-        <div class="article-metadata d-flex justify-content-between align-items-center">
-            <div>
-                <a class="mr-2 text-dark font-weight-bold" href="#">{{ object.author }}</a>
-                <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
-            </div>
-            {% if object.author == user %}
-            <div class="btn-group">
-                <a class="btn btn-secondary btn-sm" href="{% url 'assets-update' object.id %}">Update</a>
-                <a class="btn btn-danger btn-sm" href="{% url 'assets-delete' object.id %}">Delete</a>
-            </div>
-            {% endif %}
-        </div>
-        <h2 class="article-title mt-3">{{ object.title }}</h2>
-        <p class="article-content">{{ object.content }}</p>
-        {% if object.post_image %}
-        <img class="img-fluid mt-3" src="{{ object.post_image.url }}" alt="Post image">
-        {% endif %}
+<div class="asset-tracker mt-5">
+    <div class="d-flex justify-content-between align-items-center">
+        <h2 class="text-white">ASSET TRACKER</h2>
+        <a class="btn btn-primary" href="{% url 'asset-add' %}">ADD ASSET</a>
     </div>
-</article>
+    <div class="assigned-assets mt-3">
+        <h3 class="text-white">ASSIGNED ASSETS</h3>
+        <div class="search-bar my-3">
+            <input type="text" class="form-control" placeholder="Search assets...">
+        </div>
+        {% for asset in assets %}
+        <article class="media content-section mt-3">
+            <img class="rounded-circle article-img mr-3" src="{{ asset.author.profile.image.url }}" alt="Author's profile picture" width="64" height="64">
+            <div class="media-body">
+                <div class="article-metadata d-flex justify-content-between align-items-center">
+                    <div>
+                        <a class="mr-2 text-dark font-weight-bold" href="#">{{ asset.author }}</a>
+                        <small class="text-muted">{{ asset.date_assigned|date:"F d, Y" }}</small>
+                    </div>
+                    {% if asset.author == user %}
+                    <div class="btn-group">
+                        <a class="btn btn-secondary btn-sm" href="{% url 'assets-update' asset.id %}">Update</a>
+                        <a class="btn btn-danger btn-sm" href="{% url 'assets-delete' asset.id %}">Delete</a>
+                    </div>
+                    {% endif %}
+                </div>
+                <h2 class="article-title mt-3">{{ asset.title }}</h2>
+                <p class="article-content">{{ asset.description }}</p>
+                {% if asset.asset_image %}
+                <img class="img-fluid mt-3" src="{{ asset.asset_image.url }}" alt="Asset image">
+                {% endif %}
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</div>
 {% endblock content %}
