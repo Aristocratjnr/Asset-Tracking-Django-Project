@@ -34,7 +34,7 @@ class DashboardAPI(APIView):
         curr_month = calendar.month_name[currentMonth]
         payment_objects = Payment.objects.filter(username=current_user)
         status_objects = Payment.objects.filter(username=current_user, month=curr_month, year=currentYear )
-        house_objects = MyAppUser.objects.filter(user=current_user)
+        house_objects = MyAppUser.objects.filter(user=current_user) # type: ignore
         user_serialiizer = MyAppUserSerializer(current_user) # type: ignore
         payment_serializer = payment_serializer(payment_objects)
         current_payment_serializer = payment_serializer(status_objects)
@@ -48,7 +48,7 @@ def Dashboard(request):
     curr_month = calendar.month_name[currentMonth]
     payment_objects = Payment.objects.filter(username=current_user)
     status_objects = Payment.objects.filter(username=current_user, month=curr_month, year=currentYear )
-    house_objects = MyAppUser.objects.filter(user=current_user)
+    house_objects = MyAppUser.objects.filter(user=current_user) # type: ignore
     return render(request, 'Dashboard.html',
         {'payment_objects':payment_objects,'house_objects':house_objects, 'status_objects':status_objects}
     )
