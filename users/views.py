@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
-from . forms import AssetForm, UserRegisterForm
+from . forms import UserRegisterForm
 from django.contrib import messages
 from .models import *
 from django.contrib.auth.decorators import login_required
@@ -78,15 +78,5 @@ def Register(request):
     else:
         form = UserRegisterForm()
     return render(request, 'Register.html', {'form':form})
-
-def add_asset(request):
-    if request.method == "POST":
-        form = AssetForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('asset_tracker_dashboard')  # Redirect to the dashboard after saving
-    else:
-        form = AssetForm()
-    return render(request, 'add_asset.html', {'form': form})
 
 
