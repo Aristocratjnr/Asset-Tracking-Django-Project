@@ -21,7 +21,7 @@ urlpatterns = [
     path('', views.index),
      path('logout/', auth_view.LogoutView.as_view(template_name='users/logout.html'), name='logout'),
     path('SignIn',auth_view.LoginView.as_view(template_name='SignIn.html')),
-     path('assets',auth_view.LoginView.as_view(template_name='assets.html')),
+     path('Assets', views.Dashboard),
     path('Dashboard/index', views.Dashboard),
     path('Dashboard', views.DashboardAPI.as_view()),
 ]
