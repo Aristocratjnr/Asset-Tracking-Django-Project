@@ -50,6 +50,10 @@
         .container a {
             color: #ffffff;
             text-decoration: underline;
+            transition: color 0.3s ease;
+        }
+        .container a:hover {
+            color: #4400ff2b;
         }
         * {
             margin: 0;
@@ -63,7 +67,7 @@
     <section class="FormCon">
         <div class="container" style="margin-top:0; padding-top:100px;">
             <h1>You have been logged out</h1>
-            <h5><a href="/SignIn">Log in again</a></h5>
+            <h5><a href="/SignIn"><button>Login again</button></a></h5>
         </div>
     </section>
 </body>
