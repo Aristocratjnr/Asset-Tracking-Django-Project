@@ -59,11 +59,11 @@
             margin: 0;
         }
         .btn-primary {
-            background-color: #007bff;
+            background-color: #00b3747c;
             border: none;
         }
         .btn-primary:hover {
-            background-color: #0056b3;
+            background-color: #00b374;
         }
     </style>
 </head>
@@ -78,13 +78,10 @@
                 <div class="collapse navbar-collapse" id="navbarToggle">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Dashboard</a>
+                            <a class="nav-link" href="users\templates\Dashboard.html">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'profile' %}"><i class="fas fa-user"></i> Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                            <a class="nav-link" href="{% static './img/logout.html' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -93,7 +90,7 @@
     </header>
     <main role="main" class="container">
         <div class="profile-header">
-            <img src="{{ request.user.profile.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
+            <img src="{% static './img/aristo.png' %}" alt="Profile Picture" class="profile-picture">
             <h2></h2>
             <p></p>
         </div>
@@ -115,7 +112,7 @@
                             <label for="id_location">Location</label>
                             <input type="text" name="location" id="id_location" class="form-control" value="">
                         </div>
-                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                       <center> <button type="submit" class="btn btn-primary">Update Profile</button></center>
                     </form>
                 </div>
             </div>
