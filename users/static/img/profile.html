@@ -1,0 +1,146 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Profile</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #3a3a3a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+        .site-header {
+            background-color: #2a2a2a;
+            padding: 10px 0;
+        }
+        .navbar-brand, .nav-link {
+            color: #ffffff !important;
+        }
+        .container {
+            margin-top: 60px;
+        }
+        .profile-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .profile-picture {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border: 5px solid #2a2a2a;
+        }
+        .profile-info {
+            background-color: #424242;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+        .profile-info h4 {
+            margin-top: 0;
+        }
+        .stats-card {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+            margin-bottom: 20px;
+        }
+        .stats-card:hover {
+            transform: scale(1.05);
+        }
+        .stats-card h4, .stats-card p {
+            margin: 0;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">ASSET TRACKER</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggle">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Dashboard</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'profile' %}"><i class="fas fa-user"></i> Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main role="main" class="container">
+        <div class="profile-header">
+            <img src="{{ request.user.profile.profile_picture.url }}" alt="Profile Picture" class="profile-picture">
+            <h2>{{ request.user.username }}</h2>
+            <p>{{ request.user.profile.bio }}</p>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="profile-info">
+                    <h4>Profile Information</h4>
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="id_profile_picture">Profile Picture</label>
+                            <input type="file" name="profile_picture" id="id_profile_picture" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="id_bio">Bio</label>
+                            <textarea name="bio" id="id_bio" class="form-control" rows="3">{{ request.user.profile.bio }}</textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="id_location">Location</label>
+                            <input type="text" name="location" id="id_location" class="form-control" value="{{ request.user.profile.location }}">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Profile</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="stats-card">
+                    <h4>15</h4>
+                    <p>Total Assets</p>
+                </div>
+                <div class="stats-card">
+                    <h4>10</h4>
+                    <p>Assigned Assets</p>
+                </div>
+                <div class="stats-card">
+                    <h4>5</h4>
+                    <p>Pending Approvals</p>
+                </div>
+                <div class="stats-card">
+                    <h4>GHC 72,144</h4>
+                    <p>Total Asset Value</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
