@@ -139,18 +139,16 @@
                             <a class="mr-2 text-light font-weight-bold" href="#">{{ asset.author }}</a>
                             <small class="text-muted">{{ asset.date_assigned|date:"F d, Y" }}</small>
                         </div>
-                        {% if asset.author == user %}
                         <div class="btn-group">
                             <a class="btn btn-secondary btn-sm" href="#">Update</a>
                             <a class="btn btn-danger btn-sm" href="#">Delete</a>
                         </div>
-                        {% endif %}
+                
                     </div>
                     <h2 class="article-title mt-3 text-light">{{ asset.title }}</h2>
                     <p class="article-content text-light">{{ asset.description }}</p>
-                    {% if asset.asset_image %}
                     <img class="img-fluid mt-3 rounded" src="{{ asset.asset_image.url }}" alt="Asset image">
-                    {% endif %}
+             
                 </div>
             </article>
         </div>
